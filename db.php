@@ -1,19 +1,25 @@
 <?php
-/* ============================================================
-   db.php — Database connection file
-   Connect to MySQL via XAMPP (localhost, root, no password)
-   ============================================================ */
+/* Database connection for Render */
 
-$host     = "localhost";   // XAMPP default host
-$user     = "root";        // XAMPP default MySQL user
-$password = "";            // XAMPP default: no password
-$database = "emergency_db"; // Our database name
+$host = getenv("DB_HOST");
+$user = getenv("DB_USER");
+$password = getenv("DB_PASSWORD");
+$database = getenv("DB_NAME");
+$port = getenv("DB_PORT") ?: 3306;
 
-// Create a MySQLi connection
-$conn = new mysqli($host, $user, $password, $database);
+// Create MySQL connection
+$conn = new mysqli(
+    $host,
+    $user,
+    $password,
+    $database,
+    $port
+);
 
-// Check if connection failed and stop execution with error
+// Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die("Database connection failed.");
 }
+
+$conn->set_charset("utf8mb4");
 ?>
