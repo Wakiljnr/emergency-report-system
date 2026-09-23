@@ -1,6 +1,5 @@
--- Create the database
-CREATE DATABASE IF NOT EXISTS emergency_db;
-USE emergency_db;
+
+
 
 -- Users table: stores registered accounts
 CREATE TABLE IF NOT EXISTS users (
